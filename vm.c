@@ -14,8 +14,10 @@ const int program[][4] = {
     {SET, R1, 7},
     {SET, R2, 9},
     {ADD, R1, R2, R3},
-    {PRNT, R3},
-    {RJMP, -2},
+    {SET, R4, 6},
+    {IF, R4, 6, 5},
+    {HALT},
+    {PRNT, R5},
     {HALT},
 };
 
@@ -73,6 +75,12 @@ void exec_instr(const int* line) {
 
         case RJMP:
             registers[IP] += line[1];
+            break;
+
+        case IF:
+            if (registers[line[1]] == line[2]) {
+                registers[IP] = line[3];
+            }
             break;
         }
     }

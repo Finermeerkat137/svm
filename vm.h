@@ -10,6 +10,7 @@ typedef enum {
     PRNT, // Dump values of registers
     NOP,  // Do nothing and increment IP.
     RJMP, // Increment ip by operand
+    IF,   // If operand 1 equals register in operand 2, set IP to operand 3
 } instruction_set;
 
 typedef enum { // R1 - 7 : general purpose registers
