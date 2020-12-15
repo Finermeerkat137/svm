@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
+#include <sys/stat.h>
+#include <string.h>
 #include "vm.h"
 #include "utils.h"
 
@@ -10,13 +12,8 @@
 int registers[NUM_OF_REGISTERS];
 bool running = true;
 
-const int program[][4] = {
-    {SET, R1, 7},
-    {SET, R2, 9},
-    {XOR, R1, R2, R7},
-    {PRNT, R7},
-    {HALT},
-};
+int** program = NULL;
+int program_size;
 
 bool start_vm(char* filename) {
     if (!init()) {
@@ -28,7 +25,14 @@ bool start_vm(char* filename) {
 
     printf("Getting instructions from file %s\n", filename);
 
-    return exec_vm();
+    program = read_instructions_from_file(filename);
+    if (program == NULL) {
+        return false;
+    }
+    
+    bool ret = exec_vm();
+    deinit();
+    return ret;
 }
 
 bool exec_vm(void) {
@@ -98,3 +102,47 @@ bool init() {
     printf("S Virtual Machine v%.1f\n", VERSION);
     return true;
 } 
+
+int** read_instructions_from_file(char* filename) {
+    struct stat st;
+    stat(filename, &st);
+    program_size = st.st_size;
+
+    int** buffer = calloc(program_size, sizeof(int*));
+    
+    FILE* fileptr = fopen(filename, "r");
+    if (fileptr == NULL) {
+        print_error("Error reading file.");
+        return NULL;
+    }
+
+    char* line = NULL;
+    size_t len = 0;
+    int counter = 0;
+
+    while (getline(&line, &len, fileptr) != -1) {
+        int buffercounter = 0;
+        char* token = strtok(line, " ");
+        buffer[counter] = calloc(len, sizeof(int));
+
+        while (token != NULL) {
+            buffer[counter][buffercounter] = strtol(token, NULL, 10);
+            token = strtok(NULL, " ");
+            buffercounter++;
+        }
+
+        counter++;
+    }
+
+    free(line);
+    fclose(fileptr);
+    return buffer;
+}
+
+void deinit(void) {
+    for (int i = 0; i < program_size; i++) {
+        free(program[i]);
+    }
+    
+    free(program);
+}

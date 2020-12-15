@@ -32,3 +32,5 @@ bool init();
 const int* fetch_instr(void);
 bool exec_vm(void);
 void exec_instr(const int* line);
+int** read_instructions_from_file(char* filename);
+void deinit(void);
