@@ -13,11 +13,8 @@ bool running = true;
 const int program[][4] = {
     {SET, R1, 7},
     {SET, R2, 9},
-    {ADD, R1, R2, R3},
-    {SET, R4, 6},
-    {IF, R4, 6, 5},
-    {HALT},
-    {PRNT, R5},
+    {XOR, R1, R2, R7},
+    {PRNT, R7},
     {HALT},
 };
 
@@ -83,6 +80,10 @@ void exec_instr(const int* line) {
             }
             break;
         }
+
+        case XOR:
+            registers[line[3]] = registers[line[2]] ^ registers[line[1]];
+            break;
     }
 }
 

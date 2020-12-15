@@ -11,3 +11,4 @@
 |6|NOP| Do nothing | NOP |
 |7|RJMP| Jump to instruction relative to current | RJMP -3 (will jump 3 instructions back)|
 |8|IF| If the specified register equals the operand, set IP to second operand | IF R1 8 9 (if R1 equals 8 set IP to 9)
+|9|XOR| XOR the values in specified registers and output to last specified register | XOR R1 R2 R7 |
