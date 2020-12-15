@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+
+import sys
+
+output = []
+lines = []
+
+registers = {
+    'R1': '0',
+    'R2': '1',
+    'R3': '2',
+    'R4': '3',
+    'R5': '4',
+    'R6': '5',
+    'R7': '6',
+    'IP': '7'
+}
+
+opcodes = {
+    'HALT' : '0',
+    'ADD'  : '1',
+    'MULT' : '2',
+    'DIV'  : '3',
+    'SET'  : '4',
+    'PRNT' : '5',
+    'NOP' : '6',
+    'RJMP' : '7',
+    'IF' : '8',
+    'XOR' : '9'
+}
+
+with open (sys.argv[1], 'r') as f:
+    lines = f.readlines()
+
+for i in range(len(lines)):
+    if lines[i] == '\n':
+        del lines[i]
+        continue
+    lines[i] = lines[i].rstrip('\n')
+
+for line in lines:
+    temp = ""
+    instruction = line.partition(' ')[0]
+    try:
+        temp = temp + opcodes[instruction]
+    except KeyError as error:
+        print("Unknown instruction " + line.partition(' ')[0])
+
+
+    if instruction == 'HALT':
+        None
+    elif instruction == 'ADD':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]] + " " + registers[operands[2]]
+    elif instruction == 'MULT':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]] + " " + registers[operands[2]]
+    elif instruction == 'DIV':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]] + " " + registers[operands[2]]
+    elif instruction == 'SET':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + registers[operands[0]] + " " + operands[1]
+    elif instruction == 'PRNT':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + registers[operands[0]]
+    elif instruction == 'NOP':
+        None
+    elif instruction == 'RJMP':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + operands[0]
+    elif instruction == 'IF':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + registers[operands[0]] + " " + operands[1] + " " + operands[2]
+    elif instruction == 'XOR':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]] + " " + registers[operands[2]]
+    
+    output.append(temp)
+
+with open (sys.argv[2], 'w') as f:
+    for line in output:
+        f.write(line)
+        f.write('\n')    
