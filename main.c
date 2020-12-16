@@ -1,8 +1,14 @@
 #include "vm.h"
 #include "utils.h"
 
-int main(void) {
-    if (!start_vm("test_instructions")) {
-        print_error("Failed to start the Virtual Machine.");
+#define error_vm(x) print_error("Failed to start the Virtual Machine."); return x
+
+int main(int argc, char** argv, char** envp) {
+    if (argc < 2) {
+        error_vm(1);
+    }
+
+    if (!start_vm(argv[1])) {
+        error_vm(2);
     }
 }
