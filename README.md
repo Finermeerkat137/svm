@@ -21,3 +21,5 @@ The destination register is the first one, and the resulting are the arguments.
 |12|IFN| If the specified register does not equal the register in operand, set IP to second operand | IFN R1 R4 R5 (if R1 does not equal R4 set IP to R5)
 |13|PUSH| Push number in register to stack| PUSH R1
 |14|POP| Pop number in stack into register | POP R1
+
+NOTE: To compile, first write the correct ASM, then call `vmasm` on the file to convert it to instructions. Then, call `vm` on the instruction file.
