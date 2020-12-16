@@ -1,5 +1,7 @@
 # virtual machine thingy
 
+It's turing complete too :)
+
 The destination register is the first one, and the resulting are the arguments.
 
 |Number|Instruction|Description|Examples
