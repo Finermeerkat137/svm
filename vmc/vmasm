@@ -26,7 +26,8 @@ opcodes = {
     'NOP' : '6',
     'RJMP' : '7',
     'IF' : '8',
-    'XOR' : '9'
+    'XOR' : '9',
+    'CFR' : '10'
 }
 
 with open (sys.argv[1], 'r') as f:
@@ -75,7 +76,9 @@ for line in lines:
     elif instruction == 'XOR':
         operands = line.split(' ', 1)[1].split(' ')
         temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]] + " " + registers[operands[2]]
-    
+    elif instruction == 'CFR':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]]
     output.append(temp)
 
 with open (sys.argv[2], 'w') as f:

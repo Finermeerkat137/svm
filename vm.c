@@ -88,6 +88,10 @@ void exec_instr(const int* line) {
         case XOR:
             registers[line[3]] = registers[line[2]] ^ registers[line[1]];
             break;
+
+        case CFR:
+            registers[line[2]] = registers[line[1]];
+            break;
     }
 }
 

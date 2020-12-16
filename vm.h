@@ -12,6 +12,7 @@ typedef enum {
     RJMP, // Increment ip by operand
     IF,   // If operand 1 equals register in operand 2, set IP to operand 3
     XOR,  // XOR values from 2 registers, and store in 3rd. XOR R1, R2, R3
+    CFR,  // Copy from register to register.
 } instruction_set;
 
 typedef enum { // R1 - 7 : general purpose registers
