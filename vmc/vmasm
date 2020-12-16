@@ -74,7 +74,7 @@ for line in lines:
         temp = temp + " " + operands[0]
     elif instruction == 'IF':
         operands = line.split(' ', 1)[1].split(' ')
-        temp = temp + " " + registers[operands[0]] + " " + operands[1] + " " + operands[2]
+        temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]] + " " + registers[operands[2]]
     elif instruction == 'XOR':
         operands = line.split(' ', 1)[1].split(' ')
         temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]] + " " + registers[operands[2]]
@@ -86,7 +86,7 @@ for line in lines:
         temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]] + " " + registers[operands[2]]
     elif instruction == 'IFN':
         operands = line.split(' ', 1)[1].split(' ')
-        temp = temp + " " + registers[operands[0]] + " " + operands[1] + " " + operands[2]
+        temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]] + " " + registers[operands[2]]
     output.append(temp)
 
 with open (sys.argv[2], 'w') as f:

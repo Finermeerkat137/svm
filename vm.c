@@ -79,8 +79,8 @@ void exec_instr(const int* line) {
             break;
 
         case IF:
-            if (registers[line[1]] == line[2]) {
-                registers[IP] = line[3];
+            if (registers[line[1]] == registers[line[2]]) {
+                registers[IP] = registers[line[3]];
             }
             break;
         }
@@ -98,8 +98,8 @@ void exec_instr(const int* line) {
             break;
         
         case IFN: {
-            if (registers[line[1]] != line[2]) {
-                registers[IP] = line[3];
+            if (registers[line[1]] != registers[line[2]]) {
+                registers[IP] = registers[line[3]];
             }
             break;
         }
