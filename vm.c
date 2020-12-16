@@ -92,6 +92,17 @@ void exec_instr(const int* line) {
         case CFR:
             registers[line[1]] = registers[line[2]];
             break;
+
+        case AND:
+            registers[line[1]] = registers[line[2]] & registers[line[3]];
+            break;
+        
+        case IFN: {
+            if (registers[line[1]] != line[2]) {
+                registers[IP] = line[3];
+            }
+            break;
+        }
     }
 }
 

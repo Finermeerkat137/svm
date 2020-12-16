@@ -13,6 +13,8 @@ typedef enum {
     IF,   // If operand 1 equals register in operand 2, set IP to operand 3
     XOR,  // XOR values from 2 registers, and store in 3rd. XOR R1, R2, R3
     CFR,  // Copy from register to register.
+    AND,  // AND values from 2 registers and store in 3rd.
+    IFN,  // IF but if not
 } instruction_set;
 
 typedef enum { // R1 - 7 : general purpose registers
