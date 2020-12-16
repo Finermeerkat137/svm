@@ -1,9 +1,11 @@
 # virtual machine thingy
 
+The destination register is the first one, and the resulting are the arguments.
+
 |Number|Instruction|Description|Examples
 -------|-----------|-----------|--------|
 |0|HALT|Stop execution|HALT|
-|1|ADD| Add values in specified registers | ADD R1 R2 R3 |
+|1|ADD| Add values in R1 specified registers | ADD R1 R2 R3 |
 |2|MULT| Multiply values in specified registers | MULT R1 R2 R2 |
 |3|DIV| Divide values in specified registers | DIV R1 R2 R3 |
 |4|SET| Set register to operand | SET R1 954 |

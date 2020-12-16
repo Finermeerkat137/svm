@@ -52,15 +52,15 @@ void exec_instr(const int* line) {
             break;
 
         case ADD:
-            registers[line[3]] = registers[line[1]] + registers[line[2]];
+            registers[line[1]] = registers[line[2]] + registers[line[3]];
             break;
         
         case MULT:
-            registers[line[3]] = registers[line[1]] * registers[line[2]];
+            registers[line[1]] = registers[line[2]] * registers[line[3]];
             break;
 
         case DIV:
-            registers[line[3]] = registers[line[1]] / registers[line[2]];
+            registers[line[1]] = registers[line[2]] / registers[line[3]];
             break;
 
         case SET:
@@ -86,11 +86,11 @@ void exec_instr(const int* line) {
         }
 
         case XOR:
-            registers[line[3]] = registers[line[2]] ^ registers[line[1]];
+            registers[line[1]] = registers[line[2]] ^ registers[line[3]];
             break;
 
         case CFR:
-            registers[line[2]] = registers[line[1]];
+            registers[line[1]] = registers[line[2]];
             break;
     }
 }
