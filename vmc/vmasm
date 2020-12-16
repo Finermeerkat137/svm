@@ -44,6 +44,10 @@ for i in range(len(lines)):
 for line in lines:
     temp = ""
     instruction = line.partition(' ')[0]
+
+    if instruction[0] == ';':
+        continue
+
     try:
         temp = temp + opcodes[instruction]
     except KeyError as error:
