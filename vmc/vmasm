@@ -29,7 +29,9 @@ opcodes = {
     'XOR' : '9',
     'CFR' : '10',
     'AND' : '11',
-    'IFN' : '12'
+    'IFN' : '12',
+    'PUSH': '13',
+    'POP' : '14'
 }
 
 with open (sys.argv[1], 'r') as f:
@@ -91,6 +93,12 @@ for line in lines:
     elif instruction == 'IFN':
         operands = line.split(' ', 1)[1].split(' ')
         temp = temp + " " + registers[operands[0]] + " " + registers[operands[1]] + " " + registers[operands[2]]
+    elif instruction == 'PUSH':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + registers[operands[0]]
+    elif instruction == 'POP':
+        operands = line.split(' ', 1)[1].split(' ')
+        temp = temp + " " + registers[operands[0]]
     output.append(temp)
 
 with open (sys.argv[2], 'w') as f:

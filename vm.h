@@ -15,6 +15,8 @@ typedef enum {
     CFR,  // Copy from register to register.
     AND,  // AND values from 2 registers and store in 3rd.
     IFN,  // IF but if not
+    PUSH, // Push value in reg to stack
+    POP,  // Pop last item from stack and put in reg
 } instruction_set;
 
 typedef enum { // R1 - 7 : general purpose registers

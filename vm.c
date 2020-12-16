@@ -13,6 +13,7 @@ int registers[NUM_OF_REGISTERS];
 bool running = true;
 
 int** program = NULL;
+int* stack = NULL;
 int program_size;
 
 bool start_vm(char* filename) {
@@ -103,6 +104,16 @@ void exec_instr(const int* line) {
             }
             break;
         }
+
+        case PUSH:
+            registers[SP]++;
+            stack[registers[SP]] = registers[line[1]];
+            break;
+        
+        case POP:
+            registers[line[1]] = stack[registers[SP]];
+            registers[SP]--;
+            break;
     }
 }
 
@@ -113,7 +124,7 @@ const int* fetch_instr(void) {
 bool init() {
     registers[SP] = -1;
     registers[IP] = 0;
-
+    stack = calloc(1024, sizeof(int));
     printf("S Virtual Machine v%.1f\n", VERSION);
     return true;
 } 
@@ -158,6 +169,7 @@ void deinit(void) {
     for (int i = 0; i < program_size; i++) {
         free(program[i]);
     }
-    
+
     free(program);
+    free(stack);    
 }
