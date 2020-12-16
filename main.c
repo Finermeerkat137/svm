@@ -5,6 +5,7 @@
 
 int main(int argc, char** argv, char** envp) {
     if (argc < 2) {
+        print_error("Insufficient arguments.");
         error_vm(1);
     }
 
